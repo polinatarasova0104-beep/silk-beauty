@@ -1,0 +1,357 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: #2D2D2D;
+    background: #FFFFFF;
+    line-height: 1.6;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #B8828E;
+}
+
+.nav a {
+    margin: 0 16px;
+    text-decoration: none;
+    color: #2D2D2D;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: #B8828E;
+}
+
+/* Buttons */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #B8828E;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background: #9D6B77;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 12px 24px;
+    background: transparent;
+    color: #B8828E;
+    text-decoration: none;
+    border: 1px solid #B8828E;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #B8828E;
+    color: #FFFFFF;
+}
+
+/* Hero */
+.hero {
+    display: flex;
+    align-items: center;
+    padding: 80px;
+    background: #F5EDE8;
+    min-height: 500px;
+    gap: 60px;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: #7A7A7A;
+    margin-bottom: 40px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.placeholder {
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+    background: #E0E0E0;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7A7A7A;
+    font-size: 18px;
+}
+
+/* Features */
+.features {
+    padding: 80px;
+}
+
+.features h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.feature-card {
+    padding: 32px;
+    background: #FAF6F2;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.feature-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    color: #7A7A7A;
+    font-size: 14px;
+}
+
+/* Services */
+.services-preview, .services-page, .masters-page {
+    padding: 80px;
+}
+
+.services-preview h2, .services-page h2, .masters-page h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.service-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+}
+
+.service-card .category {
+    color: #B8828E;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.service-card .description {
+    color: #7A7A7A;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.service-card .price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #B8828E;
+    margin-bottom: 8px;
+}
+
+.service-card .duration {
+    color: #7A7A7A;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Masters */
+.masters-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+}
+
+.master-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.master-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #F5EDE8;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: #B8828E;
+}
+
+.master-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.master-card .specialization {
+    color: #7A7A7A;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.master-card .rating {
+    color: #C9A96E;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid #B8828E;
+    color: #B8828E;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: #B8828E;
+    color: #FFFFFF;
+}
+
+/* Footer */
+.footer {
+    background: #2D2D2D;
+    color: #FFFFFF;
+    padding: 60px 80px 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer h4 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 16px;
+    color: #B8828E;
+}
+
+.footer p {
+    color: #CCCCCC;
+    margin-bottom: 8px;
+}
+
+.footer .logo {
+    color: #B8828E;
+    margin-bottom: 12px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}
+
+.center {
+    text-align: center;
+}
+
+.loading {
+    text-align: center;
+    color: #7A7A7A;
+    font-size: 18px;
+    padding: 40px;
+    grid-column: 1 / -1;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги — Silk Beauty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Silk Beauty</div>
+        <nav class="nav">
+            <a href="index.html">Главная</a>
+            <a href="services.html">Услуги</a>
+            <a href="masters.html">Мастера</a>
+            <a href="#">Портфолио</a>
+            <a href="#">О нас</a>
+        </nav>
+        <a href="#" class="btn-primary">Записаться</a>
+    </header>
+
+    <section class="services-page">
+        <h2>Наши услуги</h2>
+        
+        <div class="filters">
+            <button class="filter-btn active" data-category="all">Все</button>
+            <button class="filter-btn" data-category="manicure">Маникюр</button>
+            <button class="filter-btn" data-category="pedicure">Педикюр</button>
+            <button class="filter-btn" data-category="lashes">Ресницы</button>
+            <button class="filter-btn" data-category="brows">Брови</button>
+            <button class="filter-btn" data-category="hair">Волосы</button>
+        </div>
+
+        <div id="services-list" class="services-grid">
+            <div class="loading">Загрузка...</div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>© 2026 Silk Beauty</p>
+        </div>
+    </footer>
+
+    <script src="js/services.js"></script>
+</body>
+</html>
