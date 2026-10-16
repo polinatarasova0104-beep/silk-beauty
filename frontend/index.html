@@ -1,112 +1,150 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Silk Beauty — Салон красоты</title>
+    <meta name="description" content="Онлайн-запись в салон красоты Silk Beauty: маникюр, педикюр, наращивание ресниц, брови, укладка. Бронируйте 24/7 без звонков.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'silk-pink': '#B8828E',
+                        'silk-dark-pink': '#9D6B77',
+                        'silk-light': '#F5EDE8',
+                        'silk-gold': '#C9A96E',
+                        'silk-dark': '#2D2D2D',
+                        'silk-gray': '#7A7A7A',
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+
+<body class="font-inter text-silk-dark">
+
     <!-- Header -->
-    <header class="header">
-        <div class="logo">Silk Beauty</div>
-        <nav class="nav">
-            <a href="index.html">Главная</a>
-            <a href="services.html">Услуги</a>
-            <a href="masters.html">Мастера</a>
-            <a href="#">Портфолио</a>
-            <a href="#">О нас</a>
+    <header class="flex justify-between items-center px-20 py-5 bg-white shadow-md sticky top-0 z-50">
+        <div class="font-playfair text-2xl font-bold text-silk-pink">Silk Beauty</div>
+        <nav class="flex gap-8">
+            <a href="index.html" class="hover:text-silk-pink transition">Главная</a>
+            <a href="services.html" class="hover:text-silk-pink transition">Услуги</a>
+            <a href="masters.html" class="hover:text-silk-pink transition">Мастера</a>
+            <a href="#" class="hover:text-silk-pink transition">Портфолио</a>
+            <a href="#" class="hover:text-silk-pink transition">О нас</a>
         </nav>
-        <a href="#" class="btn-primary">Записаться</a>
+        <a href="#"
+            class="bg-silk-pink text-white px-6 py-3 rounded-lg font-semibold hover:bg-silk-dark-pink transition">Записаться</a>
     </header>
 
     <!-- Hero -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Запишитесь в салон красоты онлайн</h1>
-            <p>Бронируйте время 24/7 без звонков. Выбирайте мастера по рейтингу и портфолио.</p>
-            <div class="hero-buttons">
-                <a href="services.html" class="btn-primary">Посмотреть услуги</a>
-                <a href="masters.html" class="btn-secondary">Наши мастера</a>
+    <section class="flex items-center gap-16 px-20 py-20 bg-silk-light min-h-[500px]">
+        <div class="flex-1">
+            <h1 class="font-playfair text-5xl font-bold leading-tight mb-6">Запишитесь в салон красоты онлайн</h1>
+            <p class="text-lg text-silk-gray mb-10">Бронируйте время 24/7 без звонков. Выбирайте мастера по рейтингу и
+                портфолио.</p>
+            <div class="flex gap-4">
+                <a href="services.html"
+                    class="bg-silk-pink text-white px-6 py-3 rounded-lg font-semibold hover:bg-silk-dark-pink transition">Посмотреть
+                    услуги</a>
+                <a href="masters.html"
+                    class="border border-silk-pink text-silk-pink px-6 py-3 rounded-lg font-semibold hover:bg-silk-pink hover:text-white transition">Наши
+                    мастера</a>
             </div>
         </div>
-        <div class="hero-image">
-            <div class="placeholder">Фото салона</div>
+        <div class="flex-1 flex justify-center">
+            <div
+                class="w-full max-w-[500px] h-[400px] bg-gray-200 rounded-2xl flex items-center justify-center text-silk-gray">
+                Фото салона</div>
         </div>
     </section>
 
     <!-- Преимущества -->
-    <section class="features">
-        <h2>Почему выбирают Silk Beauty</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🕐</div>
-                <h3>Запись 24/7</h3>
-                <p>Бронируйте в любое время без звонков</p>
+    <section class="px-20 py-20">
+        <h2 class="font-playfair text-4xl font-bold text-center mb-16">Почему выбирают Silk Beauty</h2>
+        <div class="grid grid-cols-3 gap-8">
+            <div class="p-8 bg-silk-light rounded-2xl text-center">
+                <div class="text-5xl mb-4">🕐</div>
+                <h3 class="font-playfair text-xl font-bold mb-2">Запись 24/7</h3>
+                <p class="text-silk-gray text-sm">Бронируйте в любое время без звонков</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔔</div>
-                <h3>Напоминания</h3>
-                <p>Пришлём за день и за 2 часа до визита</p>
+            <div class="p-8 bg-silk-light rounded-2xl text-center">
+                <div class="text-5xl mb-4">🔔</div>
+                <h3 class="font-playfair text-xl font-bold mb-2">Напоминания</h3>
+                <p class="text-silk-gray text-sm">Пришлём за день и за 2 часа до визита</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">⭐</div>
-                <h3>Рейтинги</h3>
-                <p>Выбирайте мастера по отзывам</p>
+            <div class="p-8 bg-silk-light rounded-2xl text-center">
+                <div class="text-5xl mb-4">⭐</div>
+                <h3 class="font-playfair text-xl font-bold mb-2">Рейтинги</h3>
+                <p class="text-silk-gray text-sm">Выбирайте мастера по отзывам</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">💾</div>
-                <h3>История</h3>
-                <p>Сохраняем ваши предпочтения</p>
+            <div class="p-8 bg-silk-light rounded-2xl text-center">
+                <div class="text-5xl mb-4">💾</div>
+                <h3 class="font-playfair text-xl font-bold mb-2">История</h3>
+                <p class="text-silk-gray text-sm">Сохраняем ваши предпочтения</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">👩‍🎨</div>
-                <h3>Опытные мастера</h3>
-                <p>Каждый — специалист в своём деле</p>
+            <div class="p-8 bg-silk-light rounded-2xl text-center">
+                <div class="text-5xl mb-4">👩‍🎨</div>
+                <h3 class="font-playfair text-xl font-bold mb-2">Опытные мастера</h3>
+                <p class="text-silk-gray text-sm">Каждый — специалист в своём деле</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>Акции</h3>
-                <p>Скидки для постоянных клиентов</p>
+            <div class="p-8 bg-silk-light rounded-2xl text-center">
+                <div class="text-5xl mb-4">💰</div>
+                <h3 class="font-playfair text-xl font-bold mb-2">Акции</h3>
+                <p class="text-silk-gray text-sm">Скидки для постоянных клиентов</p>
             </div>
         </div>
     </section>
 
     <!-- Услуги (превью) -->
-    <section class="services-preview">
-        <h2>Наши услуги</h2>
-        <div id="services-list" class="services-grid">
-            <div class="loading">Загрузка...</div>
+    <section class="px-20 py-20">
+        <h2 class="font-playfair text-4xl font-bold text-center mb-16">Наши услуги</h2>
+        <div id="services-list" class="grid grid-cols-3 gap-8 mb-10">
+            <div class="text-center text-silk-gray py-10 col-span-3">Загрузка...</div>
         </div>
-        <div class="center">
-            <a href="services.html" class="btn-secondary">Все услуги</a>
+        <div class="text-center">
+            <a href="services.html"
+                class="inline-block border border-silk-pink text-silk-pink px-6 py-3 rounded-lg font-semibold hover:bg-silk-pink hover:text-white transition">Все
+                услуги</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
+    <footer class="bg-silk-dark text-white px-20 py-16">
+        <div class="grid grid-cols-3 gap-10 mb-10">
             <div>
-                <div class="logo">Silk Beauty</div>
-                <p>Салон красоты в Новосибирске</p>
+                <div class="font-playfair text-2xl font-bold text-silk-pink mb-4">Silk Beauty</div>
+                <p class="text-gray-400">Салон красоты в Новосибирске</p>
             </div>
             <div>
-                <h4>Контакты</h4>
-                <p>+7 (999) 123-45-67</p>
-                <p>info@silkbeauty.ru</p>
+                <h4 class="font-playfair text-lg text-silk-pink mb-4">Контакты</h4>
+                <p class="text-gray-400 mb-2">+7 (999) 123-45-67</p>
+                <p class="text-gray-400">info@silkbeauty.ru</p>
             </div>
             <div>
-                <h4>Соцсети</h4>
-                <p>VK · Telegram</p>
+                <h4 class="font-playfair text-lg text-silk-pink mb-4">Соцсети</h4>
+                <p class="text-gray-400">VK · Telegram</p>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
             <p>© 2026 Silk Beauty. Все права защищены.</p>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
 </body>
+
 </html>

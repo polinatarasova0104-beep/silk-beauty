@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from database import get_connection
 
@@ -15,6 +15,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Запрещаем поисковым роботам индексировать API
+
+
+@app.middleware("http")
+async def add_noindex_header(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Robots-Tag"] = "noindex, nofollow"
+    return response
+
 
 @app.get("/")
 def root():
@@ -29,10 +38,11 @@ def root():
 def get_services():
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT id, name, description, price, duration_minutes, category FROM services ORDER BY category, name")
+    cursor.execute(
+        "SELECT id, name, description, price, duration_minutes, category FROM services ORDER BY category, name")
     rows = cursor.fetchall()
     conn.close()
-    
+
     return [
         {
             "id": r["id"],
@@ -50,10 +60,11 @@ def get_services():
 def get_services_by_category(category: str):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT id, name, description, price, duration_minutes, category FROM services WHERE category = ? ORDER BY name", (category,))
+    cursor.execute(
+        "SELECT id, name, description, price, duration_minutes, category FROM services WHERE category = ? ORDER BY name", (category,))
     rows = cursor.fetchall()
     conn.close()
-    
+
     return [
         {
             "id": r["id"],
@@ -71,10 +82,11 @@ def get_services_by_category(category: str):
 def get_masters():
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT id, name, specialization, rating, reviews_count, experience_years FROM masters ORDER BY rating DESC")
+    cursor.execute(
+        "SELECT id, name, specialization, rating, reviews_count, experience_years FROM masters ORDER BY rating DESC")
     rows = cursor.fetchall()
     conn.close()
-    
+
     return [
         {
             "id": r["id"],
@@ -92,14 +104,15 @@ def get_masters():
 def get_master(master_id: int):
     conn = get_connection()
     cursor = conn.cursor()
-    
-    cursor.execute("SELECT id, name, specialization, rating, reviews_count, experience_years FROM masters WHERE id = ?", (master_id,))
+
+    cursor.execute(
+        "SELECT id, name, specialization, rating, reviews_count, experience_years FROM masters WHERE id = ?", (master_id,))
     row = cursor.fetchone()
-    
+
     if not row:
         conn.close()
         raise HTTPException(status_code=404, detail="Мастер не найден")
-    
+
     master = {
         "id": row["id"],
         "name": row["name"],
@@ -109,14 +122,14 @@ def get_master(master_id: int):
         "experience_years": row["experience_years"],
         "services": []
     }
-    
+
     cursor.execute("""
         SELECT s.id, s.name, s.price, s.duration_minutes
         FROM services s
         JOIN master_services ms ON s.id = ms.service_id
         WHERE ms.master_id = ?
     """, (master_id,))
-    
+
     for s in cursor.fetchall():
         master["services"].append({
             "id": s["id"],
@@ -124,7 +137,7 @@ def get_master(master_id: int):
             "price": s["price"],
             "duration_minutes": s["duration_minutes"],
         })
-    
+
     conn.close()
     return master
 
@@ -150,7 +163,7 @@ def get_bookings():
     """)
     rows = cursor.fetchall()
     conn.close()
-    
+
     return [
         {
             "id": r["id"],

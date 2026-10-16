@@ -16,10 +16,10 @@ def test_connection():
         cursor.execute("SELECT COUNT(*) FROM masters")
         count = cursor.fetchone()[0]
         conn.close()
-        print(f"✅ Подключение к SQLite работает! Мастеров: {count}")
+        print(f" Подключение к SQLite работает! Мастеров: {count}")
         return True
     except Exception as e:
-        print(f"❌ Ошибка: {e}")
+        print(f" Ошибка: {e}")
         return False
 
 
