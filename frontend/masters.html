@@ -1,38 +1,66 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мастера — Silk Beauty</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <title>Наши мастера — Silk Beauty</title>
+    <meta name="description"
+        content="Опытные мастера салона Silk Beauty: маникюр, педикюр, ресницы, брови, волосы. Рейтинги, отзывы, опыт работы.">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'silk-pink': '#B8828E',
+                        'silk-dark-pink': '#9D6B77',
+                        'silk-light': '#F5EDE8',
+                        'silk-gold': '#C9A96E',
+                        'silk-dark': '#2D2D2D',
+                        'silk-gray': '#7A7A7A',
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <header class="header">
-        <div class="logo">Silk Beauty</div>
-        <nav class="nav">
-            <a href="index.html">Главная</a>
-            <a href="services.html">Услуги</a>
-            <a href="masters.html">Мастера</a>
-            <a href="#">Портфолио</a>
-            <a href="#">О нас</a>
+
+<body class="font-inter text-silk-dark">
+
+    <header class="flex justify-between items-center px-20 py-5 bg-white shadow-md sticky top-0 z-50">
+        <div class="font-playfair text-2xl font-bold text-silk-pink">Silk Beauty</div>
+        <nav class="flex gap-8">
+            <a href="index.html" class="hover:text-silk-pink transition">Главная</a>
+            <a href="services.html" class="hover:text-silk-pink transition">Услуги</a>
+            <a href="masters.html" class="hover:text-silk-pink transition">Мастера</a>
+            <a href="#" class="hover:text-silk-pink transition">Портфолио</a>
+            <a href="#" class="hover:text-silk-pink transition">О нас</a>
         </nav>
-        <a href="#" class="btn-primary">Записаться</a>
+        <a href="#"
+            class="bg-silk-pink text-white px-6 py-3 rounded-lg font-semibold hover:bg-silk-dark-pink transition">Записаться</a>
     </header>
 
-    <section class="masters-page">
-        <h2>Наши мастера</h2>
-        <div id="masters-list" class="masters-grid">
-            <div class="loading">Загрузка...</div>
+    <section class="px-20 py-20">
+        <h1 class="font-playfair text-4xl font-bold text-center mb-16">Наши мастера</h1>
+        <div id="masters-list" class="grid grid-cols-4 gap-8">
+            <div class="text-center text-silk-gray py-10 col-span-4">Загрузка...</div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-bottom">
-            <p>© 2026 Silk Beauty</p>
-        </div>
+    <footer class="bg-silk-dark text-white px-20 py-6 text-center">
+        <p>© 2026 Silk Beauty</p>
     </footer>
 
     <script src="js/masters.js"></script>
 </body>
+
 </html>

@@ -1,48 +1,87 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Услуги — Silk Beauty</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description"
+        content="Полный список услуг салона Silk Beauty: маникюр, педикюр, наращивание ресниц, коррекция бровей, укладка волос. Цены и длительность.">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'silk-pink': '#B8828E',
+                        'silk-dark-pink': '#9D6B77',
+                        'silk-light': '#F5EDE8',
+                        'silk-dark': '#2D2D2D',
+                        'silk-gray': '#7A7A7A',
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <header class="header">
-        <div class="logo">Silk Beauty</div>
-        <nav class="nav">
-            <a href="index.html">Главная</a>
-            <a href="services.html">Услуги</a>
-            <a href="masters.html">Мастера</a>
-            <a href="#">Портфолио</a>
-            <a href="#">О нас</a>
+
+<body class="font-inter text-silk-dark">
+
+    <header class="flex justify-between items-center px-20 py-5 bg-white shadow-md sticky top-0 z-50">
+        <div class="font-playfair text-2xl font-bold text-silk-pink">Silk Beauty</div>
+        <nav class="flex gap-8">
+            <a href="index.html" class="hover:text-silk-pink transition">Главная</a>
+            <a href="services.html" class="hover:text-silk-pink transition">Услуги</a>
+            <a href="masters.html" class="hover:text-silk-pink transition">Мастера</a>
+            <a href="#" class="hover:text-silk-pink transition">Портфолио</a>
+            <a href="#" class="hover:text-silk-pink transition">О нас</a>
         </nav>
-        <a href="#" class="btn-primary">Записаться</a>
+        <a href="#"
+            class="bg-silk-pink text-white px-6 py-3 rounded-lg font-semibold hover:bg-silk-dark-pink transition">Записаться</a>
     </header>
 
-    <section class="services-page">
-        <h2>Наши услуги</h2>
-        
-        <div class="filters">
-            <button class="filter-btn active" data-category="all">Все</button>
-            <button class="filter-btn" data-category="manicure">Маникюр</button>
-            <button class="filter-btn" data-category="pedicure">Педикюр</button>
-            <button class="filter-btn" data-category="lashes">Ресницы</button>
-            <button class="filter-btn" data-category="brows">Брови</button>
-            <button class="filter-btn" data-category="hair">Волосы</button>
+    <section class="px-20 py-20">
+        <h1 class="font-playfair text-4xl font-bold text-center mb-16">Наши услуги</h1>
+
+        <div class="flex justify-center flex-wrap gap-3 mb-10">
+            <button
+                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition active"
+                data-category="all">Все</button>
+            <button
+                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition"
+                data-category="manicure">Маникюр</button>
+            <button
+                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition"
+                data-category="pedicure">Педикюр</button>
+            <button
+                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition"
+                data-category="lashes">Ресницы</button>
+            <button
+                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition"
+                data-category="brows">Брови</button>
+            <button
+                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition"
+                data-category="hair">Волосы</button>
         </div>
 
-        <div id="services-list" class="services-grid">
-            <div class="loading">Загрузка...</div>
+        <div id="services-list" class="grid grid-cols-3 gap-8">
+            <div class="text-center text-silk-gray py-10 col-span-3">Загрузка...</div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-bottom">
-            <p>© 2026 Silk Beauty</p>
-        </div>
+    <footer class="bg-silk-dark text-white px-20 py-6 text-center">
+        <p>© 2026 Silk Beauty</p>
     </footer>
 
     <script src="js/services.js"></script>
 </body>
+
 </html>
