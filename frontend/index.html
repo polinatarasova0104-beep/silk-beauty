@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Silk Beauty — Салон красоты</title>
-    <meta name="description" content="Онлайн-запись в салон красоты Silk Beauty: маникюр, педикюр, наращивание ресниц, брови, укладка. Бронируйте 24/7 без звонков.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Silk Beauty — Салон красоты в Новосибирске</title>
+    <meta name="description"
+        content="Онлайн-запись в салон красоты Silk Beauty: маникюр, педикюр, наращивание ресниц, брови, укладка. Бронируйте 24/7 без звонков.">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap"
         rel="stylesheet">
-
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>   
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -34,97 +35,98 @@
     </script>
 </head>
 
-<body class="font-inter text-silk-dark">
-
-    <!-- Header -->
-    <header class="flex justify-between items-center px-20 py-5 bg-white shadow-md sticky top-0 z-50">
-        <div class="font-playfair text-2xl font-bold text-silk-pink">Silk Beauty</div>
-        <nav class="flex gap-8">
-            <a href="index.html" class="hover:text-silk-pink transition">Главная</a>
+<body class="font-inter text-silk-dark relative overflow-x-hidden">
+    <style>
+        body {
+            background-image: url('images/salon/background.jpg') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
+        }
+    </style>
+    <header
+        class="flex justify-between items-center px-8 md:px-20 py-5 bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <a href="index.html" class="font-playfair text-2xl font-bold text-silk-pink">Silk Beauty</a>
+        <nav class="hidden md:flex gap-8 font-semibold text-sm">
+            <a href="index.html" class="text-silk-pink transition">Главная</a>
             <a href="services.html" class="hover:text-silk-pink transition">Услуги</a>
             <a href="masters.html" class="hover:text-silk-pink transition">Мастера</a>
-            <a href="#" class="hover:text-silk-pink transition">Портфолио</a>
-            <a href="#" class="hover:text-silk-pink transition">О нас</a>
+            <a href="portfolio.html" class="hover:text-silk-pink transition">Портфолио</a>
+            <a href="about.html" class="hover:text-silk-pink transition">О нас</a>
+            <!-- ДОБАВЛЕНА ССЫЛКА НА ЛИЧНЫЙ КАБИНЕТ -->
+            <a href="account.html" class="hover:text-silk-pink transition">Личный кабинет</a>
         </nav>
-        <a href="#"
-            class="bg-silk-pink text-white px-6 py-3 rounded-lg font-semibold hover:bg-silk-dark-pink transition">Записаться</a>
+        <button onclick="openBooking()"
+            class="bg-silk-pink text-white px-6 py-3 rounded-full font-semibold hover:bg-silk-dark-pink transition shadow-lg shadow-silk-pink/30">Записаться</button>
     </header>
 
-    <!-- Hero -->
-    <section class="flex items-center gap-16 px-20 py-20 bg-silk-light min-h-[500px]">
+    <section class="flex flex-col md:flex-row items-center gap-12 px-8 md:px-20 py-20 min-h-[500px]">
         <div class="flex-1">
-            <h1 class="font-playfair text-5xl font-bold leading-tight mb-6">Запишитесь в салон красоты онлайн</h1>
+            <h1 class="font-playfair text-5xl md:text-6xl font-bold leading-tight mb-6">Запишитесь в салон красоты
+                онлайн</h1>
             <p class="text-lg text-silk-gray mb-10">Бронируйте время 24/7 без звонков. Выбирайте мастера по рейтингу и
                 портфолио.</p>
             <div class="flex gap-4">
                 <a href="services.html"
-                    class="bg-silk-pink text-white px-6 py-3 rounded-lg font-semibold hover:bg-silk-dark-pink transition">Посмотреть
+                    class="bg-silk-pink text-white px-8 py-4 rounded-full font-semibold hover:bg-silk-dark-pink transition shadow-lg shadow-silk-pink/30">Посмотреть
                     услуги</a>
                 <a href="masters.html"
-                    class="border border-silk-pink text-silk-pink px-6 py-3 rounded-lg font-semibold hover:bg-silk-pink hover:text-white transition">Наши
+                    class="border-2 border-silk-pink text-silk-pink px-8 py-4 rounded-full font-semibold hover:bg-silk-pink hover:text-white transition">Наши
                     мастера</a>
             </div>
         </div>
-        <div class="flex-1 flex justify-center">
-            <div
-                class="w-full max-w-[500px] h-[400px] bg-gray-200 rounded-2xl flex items-center justify-center text-silk-gray">
-                Фото салона</div>
+        <div class="flex-1 flex justify-center w-full">
+            <img src="images/salon/salon-main.jpg" alt="Салон красоты Silk Beauty"
+                class="w-full max-w-[500px] h-[400px] object-cover rounded-[40px] shadow-2xl border-4 border-white">
         </div>
     </section>
 
-    <!-- Преимущества -->
-    <section class="px-20 py-20">
+    
+    <section class="px-8 md:px-20 py-20">
         <h2 class="font-playfair text-4xl font-bold text-center mb-16">Почему выбирают Silk Beauty</h2>
-        <div class="grid grid-cols-3 gap-8">
-            <div class="p-8 bg-silk-light rounded-2xl text-center">
-                <div class="text-5xl mb-4">🕐</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div
+                class="bg-white/60 backdrop-blur-sm p-8 rounded-[32px] text-center shadow-sm border border-white hover:-translate-y-1 transition flex flex-col items-center">
+                <div class="bg-silk-light p-5 rounded-full mb-5">
+                    <i data-lucide="clock" class="w-8 h-8 text-silk-pink"></i>
+                </div>
                 <h3 class="font-playfair text-xl font-bold mb-2">Запись 24/7</h3>
                 <p class="text-silk-gray text-sm">Бронируйте в любое время без звонков</p>
             </div>
-            <div class="p-8 bg-silk-light rounded-2xl text-center">
-                <div class="text-5xl mb-4">🔔</div>
+            <div
+                class="bg-white/60 backdrop-blur-sm p-8 rounded-[32px] text-center shadow-sm border border-white hover:-translate-y-1 transition flex flex-col items-center">
+                <div class="bg-silk-light p-5 rounded-full mb-5">
+                    <i data-lucide="bell" class="w-8 h-8 text-silk-pink"></i>
+                </div>
                 <h3 class="font-playfair text-xl font-bold mb-2">Напоминания</h3>
                 <p class="text-silk-gray text-sm">Пришлём за день и за 2 часа до визита</p>
             </div>
-            <div class="p-8 bg-silk-light rounded-2xl text-center">
-                <div class="text-5xl mb-4">⭐</div>
+            <div
+                class="bg-white/60 backdrop-blur-sm p-8 rounded-[32px] text-center shadow-sm border border-white hover:-translate-y-1 transition flex flex-col items-center">
+                <div class="bg-silk-light p-5 rounded-full mb-5">
+                    <i data-lucide="star" class="w-8 h-8 text-silk-pink"></i>
+                </div>
                 <h3 class="font-playfair text-xl font-bold mb-2">Рейтинги</h3>
                 <p class="text-silk-gray text-sm">Выбирайте мастера по отзывам</p>
-            </div>
-            <div class="p-8 bg-silk-light rounded-2xl text-center">
-                <div class="text-5xl mb-4">💾</div>
-                <h3 class="font-playfair text-xl font-bold mb-2">История</h3>
-                <p class="text-silk-gray text-sm">Сохраняем ваши предпочтения</p>
-            </div>
-            <div class="p-8 bg-silk-light rounded-2xl text-center">
-                <div class="text-5xl mb-4">👩‍🎨</div>
-                <h3 class="font-playfair text-xl font-bold mb-2">Опытные мастера</h3>
-                <p class="text-silk-gray text-sm">Каждый — специалист в своём деле</p>
-            </div>
-            <div class="p-8 bg-silk-light rounded-2xl text-center">
-                <div class="text-5xl mb-4">💰</div>
-                <h3 class="font-playfair text-xl font-bold mb-2">Акции</h3>
-                <p class="text-silk-gray text-sm">Скидки для постоянных клиентов</p>
             </div>
         </div>
     </section>
 
-    <!-- Услуги (превью) -->
-    <section class="px-20 py-20">
+    <section class="px-8 md:px-20 py-20">
         <h2 class="font-playfair text-4xl font-bold text-center mb-16">Наши услуги</h2>
-        <div id="services-list" class="grid grid-cols-3 gap-8 mb-10">
-            <div class="text-center text-silk-gray py-10 col-span-3">Загрузка...</div>
+        <div id="services-list" class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-10">
+            <div class="text-center text-silk-gray py-10 col-span-1 md:col-span-3">Загрузка...</div>
         </div>
         <div class="text-center">
             <a href="services.html"
-                class="inline-block border border-silk-pink text-silk-pink px-6 py-3 rounded-lg font-semibold hover:bg-silk-pink hover:text-white transition">Все
+                class="inline-block border-2 border-silk-pink text-silk-pink px-8 py-4 rounded-full font-semibold hover:bg-silk-pink hover:text-white transition">Все
                 услуги</a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-silk-dark text-white px-20 py-16">
-        <div class="grid grid-cols-3 gap-10 mb-10">
+    <footer class="bg-silk-dark text-white px-8 md:px-20 py-16 mt-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10 max-w-6xl mx-auto">
             <div>
                 <div class="font-playfair text-2xl font-bold text-silk-pink mb-4">Silk Beauty</div>
                 <p class="text-gray-400">Салон красоты в Новосибирске</p>
@@ -144,7 +146,9 @@
         </div>
     </footer>
 
+    <script src="js/booking.js"></script>
     <script src="js/main.js"></script>
+    <script>lucide.createIcons();</script>
 </body>
 
 </html>

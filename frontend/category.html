@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги — Silk Beauty</title>
+    <meta name="description" content="Прайс-лист салона Silk Beauty.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Подключаем Supabase JS (обязательно для проверки записей) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'silk-pink': '#B8828E',
+                        'silk-dark-pink': '#9D6B77',
+                        'silk-light': '#F5EDE8',
+                        'silk-gold': '#C9A96E',
+                        'silk-dark': '#2D2D2D',
+                        'silk-gray': '#7A7A7A',
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-inter text-silk-dark relative overflow-x-hidden">
+    <style>
+        body {
+            background-image: url('images/salon/background.jpg') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
+        }
+    </style>
+    
+    <header
+        class="flex justify-between items-center px-8 md:px-20 py-5 bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <a href="index.html" class="font-playfair text-2xl font-bold text-silk-pink">Silk Beauty</a>
+        <nav class="hidden md:flex gap-8 font-semibold text-sm">
+            <a href="index.html" class="hover:text-silk-pink transition">Главная</a>
+            <a href="services.html" class="text-silk-pink transition">Услуги</a>
+            <a href="masters.html" class="hover:text-silk-pink transition">Мастера</a>
+            <a href="portfolio.html" class="hover:text-silk-pink transition">Портфолио</a>
+            <a href="about.html" class="hover:text-silk-pink transition">О нас</a>
+            <a href="account.html" class="hover:text-silk-pink transition">Личный кабинет</a>
+        </nav>
+        <button onclick="openBooking()"
+            class="bg-silk-pink text-white px-6 py-3 rounded-full font-semibold hover:bg-silk-dark-pink transition shadow-lg shadow-silk-pink/30">Записаться</button>
+    </header>
+
+    <section class="px-8 md:px-20 py-20">
+        <h1 id="category-title" class="font-playfair text-4xl font-bold text-center mb-6">Услуги</h1>
+
+        <div class="flex justify-center flex-wrap gap-3 mb-10">
+            <a href="category.html?cat=manicure" class="filter-btn px-5 py-2 border-2 border-silk-pink text-silk-pink rounded-full font-semibold hover:bg-silk-pink hover:text-white transition">Маникюр</a>
+            <a href="category.html?cat=pedicure" class="filter-btn px-5 py-2 border-2 border-silk-pink text-silk-pink rounded-full font-semibold hover:bg-silk-pink hover:text-white transition">Педикюр</a>
+            <a href="category.html?cat=lashes" class="filter-btn px-5 py-2 border-2 border-silk-pink text-silk-pink rounded-full font-semibold hover:bg-silk-pink hover:text-white transition">Ресницы</a>
+            <a href="category.html?cat=brows" class="filter-btn px-5 py-2 border-2 border-silk-pink text-silk-pink rounded-full font-semibold hover:bg-silk-pink hover:text-white transition">Брови</a>
+            <a href="category.html?cat=hair" class="filter-btn px-5 py-2 border-2 border-silk-pink text-silk-pink rounded-full font-semibold hover:bg-silk-pink hover:text-white transition">Волосы</a>
+        </div>
+
+        <div class="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-[32px] shadow-xl overflow-hidden border border-white">
+            <table class="w-full">
+                <thead class="bg-silk-light">
+                    <tr>
+                        <th class="text-left px-8 py-5 font-playfair text-lg">Услуга</th>
+                        <th class="text-left px-4 py-5 font-playfair text-lg">Цена</th>
+                        <th class="text-left px-4 py-5 font-playfair text-lg">Время</th>
+                        <th class="text-right px-8 py-5 font-playfair text-lg"></th>
+                    </tr>
+                </thead>
+                <tbody id="services-table-body">
+                    <tr><td colspan="4" class="text-center py-10 text-silk-gray">Загрузка...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="bg-silk-dark text-white px-20 py-6 text-center">
+        <p>© 2026 Silk Beauty</p>
+    </footer>
+
+    <script src="js/booking.js"></script>
+    <script>
+        const API_URL = '/api';
+        const params = new URLSearchParams(window.location.search);
+        const category = params.get('cat') || 'manicure';
+        const titles = { manicure: 'Маникюр', pedicure: 'Педикюр', lashes: 'Ресницы', brows: 'Брови', hair: 'Волосы' };
+        
+        const SUPABASE_URL = "https://toedeeggcbgdyvtfpntq.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_UTAh07w33ICbgMDLI2lV9Q_bFRAERc3";
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        document.getElementById('category-title').textContent = titles[category] || 'Услуги';
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            if (btn.href.includes(`cat=${category}`)) {
+                btn.classList.add('bg-silk-pink', 'text-white');
+                btn.classList.remove('text-silk-pink');
+            }
+        });
+
+        async function loadServices() {
+            const tbody = document.getElementById('services-table-body');
+            try {
+                const response = await fetch(`${API_URL}/services/${category}`);
+                const services = await response.json();
+                
+                // Получаем записи текущего пользователя
+                let userBookings = [];
+                const { data: { user } } = await supabaseClient.auth.getUser();
+                if (user) {
+                    const { data } = await supabaseClient
+                        .from('bookings')
+                        .select('service_name')
+                        .eq('user_email', user.email)
+                        .eq('status', 'active');
+                    if (data) userBookings = data.map(b => b.service_name);
+                }
+
+                if (services.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="text-center py-10 text-silk-gray">Услуги не найдены</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = services.map(s => {
+                    // Проверяем, есть ли запись на эту услугу
+                    const isBooked = userBookings.includes(s.name);
+                    
+                    const buttonHtml = isBooked 
+                        ? `<button disabled class="inline-block bg-gray-300 text-gray-500 px-5 py-2.5 rounded-xl font-semibold cursor-not-allowed text-sm shadow-none">Вы записаны</button>`
+                        : `<button onclick="openBooking('${s.name}')" class="inline-block bg-silk-pink text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-silk-dark-pink transition text-sm shadow-md">Записаться</button>`;
+
+                    return `
+                    <tr class="border-t border-gray-100 hover:bg-silk-light/50 transition">
+                        <td class="px-8 py-5">
+                            <div class="font-semibold">${s.name}</div>
+                            <div class="text-sm text-silk-gray">${s.description || ''}</div>
+                        </td>
+                        <td class="px-4 py-5 font-bold text-silk-pink">${s.price} ₽</td>
+                        <td class="px-4 py-5 text-silk-gray">${s.duration_minutes} мин</td>
+                        <td class="px-8 py-5 text-right">
+                            ${buttonHtml}
+                        </td>
+                    </tr>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error(error);
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center py-10 text-silk-gray">Ошибка загрузки</td></tr>';
+            }
+        }
+        loadServices();
+    </script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

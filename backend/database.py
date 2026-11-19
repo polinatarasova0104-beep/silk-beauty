@@ -1,27 +1,13 @@
-import sqlite3
+import os
+from supabase import create_client, Client
+from dotenv import load_dotenv
 
-DB_FILE = 'silk_beauty.db'
+# Загружаем переменные из .env
+load_dotenv()
 
-def get_connection():
-    """Создаёт подключение к SQLite"""
-    conn = sqlite3.connect(DB_FILE)
-    conn.row_factory = sqlite3.Row
-    return conn
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+# Используем ПУБЛИЧНЫЙ ключ (publishable)
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
-
-def test_connection():
-    try:
-        conn = get_connection()
-        cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM masters")
-        count = cursor.fetchone()[0]
-        conn.close()
-        print(f" Подключение к SQLite работает! Мастеров: {count}")
-        return True
-    except Exception as e:
-        print(f" Ошибка: {e}")
-        return False
-
-
-if __name__ == "__main__":
-    test_connection()
+def get_supabase() -> Client:
+    return create_client(SUPABASE_URL, SUPABASE_KEY)

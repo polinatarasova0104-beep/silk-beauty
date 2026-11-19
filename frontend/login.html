@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход — Silk Beauty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'silk-pink': '#B8828E', 'silk-dark': '#2D2D2D', 'silk-gray': '#7A7A7A' },
+                    fontFamily: { 'playfair': ['Playfair Display', 'serif'], 'inter': ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter text-silk-dark relative overflow-x-hidden" style="background-image: url('images/salon/background.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat;">
+    
+    <header class="flex justify-between items-center px-8 md:px-20 py-5 bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <a href="index.html" class="font-playfair text-2xl font-bold text-silk-pink">Silk Beauty</a>
+        <nav class="hidden md:flex gap-8 font-semibold text-sm">
+            <a href="index.html" class="hover:text-silk-pink transition">Главная</a>
+            <a href="services.html" class="hover:text-silk-pink transition">Услуги</a>
+            <a href="masters.html" class="hover:text-silk-pink transition">Мастера</a>
+            <a href="portfolio.html" class="hover:text-silk-pink transition">Портфолио</a>
+            <a href="about.html" class="hover:text-silk-pink transition">О нас</a>
+            <a href="account.html" class="hover:text-silk-pink transition">Личный кабинет</a>
+        </nav>
+        <button onclick="openBooking()" class="bg-silk-pink text-white px-6 py-3 rounded-full font-semibold hover:bg-silk-dark-pink transition shadow-lg shadow-silk-pink/30">Записаться</button>
+    </header>
+
+    <div class="min-h-screen flex items-center justify-center px-4 py-20">
+        <div class="bg-white/90 backdrop-blur-md p-10 rounded-[32px] shadow-2xl w-full max-w-md border border-white/50">
+            
+            <div class="text-center mb-8">
+                <h1 id="page-title" class="font-playfair text-4xl font-bold mb-2">Вход</h1>
+                <p id="page-subtitle" class="text-silk-gray text-sm">Рады видеть вас снова!</p>
+            </div>
+            
+            <form id="auth-form" class="space-y-4">
+                <!-- ПОЛЕ ИМЯ (появляется только при регистрации) -->
+                <div id="name-field" class="hidden">
+                    <label class="block text-sm font-semibold mb-1">Ваше имя</label>
+                    <input type="text" id="name" placeholder="Анна" class="w-full px-4 py-2 rounded-xl border-2 border-gray-200 focus:border-silk-pink outline-none bg-gray-50 transition">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-1">Email</label>
+                    <input type="email" id="email" required placeholder="example@mail.ru" class="w-full px-4 py-2 rounded-xl border-2 border-gray-200 focus:border-silk-pink outline-none bg-gray-50 transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-1">Пароль</label>
+                    <input type="password" id="password" required placeholder="Минимум 6 символов" class="w-full px-4 py-2 rounded-xl border-2 border-gray-200 focus:border-silk-pink outline-none bg-gray-50 transition">
+                </div>
+                
+                <div id="message-box" class="hidden text-sm p-3 rounded-lg text-center"></div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-silk-pink text-white py-4 rounded-xl font-bold hover:bg-opacity-90 transition shadow-lg shadow-silk-pink/30 mt-2">
+                    Войти
+                </button>
+            </form>
+
+            <p class="text-center mt-6 text-sm text-silk-gray">
+                <span id="toggle-question">Нет аккаунта?</span> 
+                <button type="button" onclick="toggleMode()" id="toggle-btn" class="text-silk-pink font-semibold hover:underline ml-1">Зарегистрироваться</button>
+            </p>
+        </div>
+    </div>
+
+    <script src="js/booking.js"></script>
+    <script>
+        const SUPABASE_URL = "https://toedeeggcbgdyvtfpntq.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_UTAh07w33ICbgMDLI2lV9Q_bFRAERc3";
+        
+        let supabaseClient = null;
+        
+        window.onload = function() {
+            if (window.supabase) {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            }
+        };
+        
+        let isLoginMode = true;
+
+        function toggleMode() {
+            isLoginMode = !isLoginMode;
+            document.getElementById('page-title').textContent = isLoginMode ? 'Вход' : 'Регистрация';
+            document.getElementById('page-subtitle').textContent = isLoginMode ? 'Рады видеть вас снова!' : 'Создайте новый аккаунт';
+            document.getElementById('submit-btn').textContent = isLoginMode ? 'Войти' : 'Зарегистрироваться';
+            document.getElementById('toggle-question').textContent = isLoginMode ? 'Нет аккаунта?' : 'Уже есть аккаунт?';
+            document.getElementById('toggle-btn').textContent = isLoginMode ? 'Зарегистрироваться' : 'Войти';
+            document.getElementById('message-box').className = 'hidden';
+            
+            // Показываем/скрываем поле Имя
+            const nameField = document.getElementById('name-field');
+            if (isLoginMode) {
+                nameField.classList.add('hidden');
+            } else {
+                nameField.classList.remove('hidden');
+            }
+        }
+
+        function showMessage(text, isError = true) {
+            const box = document.getElementById('message-box');
+            box.textContent = text;
+            box.className = `text-sm p-3 rounded-lg text-center ${isError ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`;
+        }
+
+        document.getElementById('auth-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!supabaseClient) {
+                alert("Ошибка: Supabase не инициализирован.");
+                return;
+            }
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const name = document.getElementById('name').value;
+            const btn = document.getElementById('submit-btn');
+            
+            btn.textContent = 'Загрузка...';
+            btn.disabled = true;
+
+            try {
+                if (isLoginMode) {
+                    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                    if (error) throw error;
+                    showMessage('Успешный вход! Перенаправляем...', false);
+                    setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+                } else {
+                    // РЕГИСТРАЦИЯ с сохранением имени в метаданные
+                    const { data, error } = await supabaseClient.auth.signUp({ 
+                        email, 
+                        password,
+                        options: {
+                            data: { full_name: name }
+                        }
+                    });
+                    if (error) throw error;
+                    
+                    showMessage('Регистрация успешна! Выполняется вход...', false);
+                    setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+                }
+            } catch (error) {
+                showMessage('Ошибка: ' + error.message, true);
+            } finally {
+                btn.textContent = isLoginMode ? 'Войти' : 'Зарегистрироваться';
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

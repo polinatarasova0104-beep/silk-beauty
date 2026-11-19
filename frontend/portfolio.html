@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наше портфолио — Silk Beauty</title>
+    <meta name="description" content="Галерея работ мастеров салона Silk Beauty.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'silk-pink': '#B8828E',
+                        'silk-dark-pink': '#9D6B77',
+                        'silk-light': '#F5EDE8',
+                        'silk-gold': '#C9A96E',
+                        'silk-dark': '#2D2D2D',
+                        'silk-gray': '#7A7A7A',
+                        'silk-rose': '#F5D8DE',
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-inter text-silk-dark relative overflow-x-hidden">
+    <style>
+        body {
+            background-image: url('images/salon/background.jpg') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
+        }
+    </style>
+    <header
+        class="flex justify-between items-center px-8 md:px-20 py-5 bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <a href="index.html" class="font-playfair text-2xl font-bold text-silk-pink">Silk Beauty</a>
+        <nav class="hidden md:flex gap-8 font-semibold text-sm">
+            <a href="index.html" class="hover:text-silk-pink transition">Главная</a>
+            <a href="services.html" class="hover:text-silk-pink transition">Услуги</a>
+            <a href="masters.html" class="hover:text-silk-pink transition">Мастера</a>
+            <a href="portfolio.html" class="text-silk-pink transition">Портфолио</a>
+            <a href="about.html" class="hover:text-silk-pink transition">О нас</a>
+            <!-- Добавлена ссылка на ЛК -->
+            <a href="account.html" class="hover:text-silk-pink transition">Личный кабинет</a>
+        </nav>
+        <button onclick="openBooking()"
+            class="bg-silk-pink text-white px-6 py-3 rounded-full font-semibold hover:bg-silk-dark-pink transition shadow-lg shadow-silk-pink/30">Записаться</button>
+    </header>
+
+    <section class="px-8 md:px-20 py-20 max-w-6xl mx-auto text-center">
+        <h1 class="font-playfair text-5xl font-bold mb-4 italic">Наше портфолио</h1>
+        <p class="text-silk-gray mb-12">Результаты работы наших мастеров</p>
+
+        <div class="bg-white/60 backdrop-blur-md rounded-[40px] p-8 md:p-12 shadow-xl border border-white">
+            <h2 class="font-playfair text-2xl tracking-[0.3em] mb-12 uppercase text-silk-dark/50">Галерея работ</h2>
+
+            <div class="grid md:grid-cols-2 gap-8 text-left">
+                <!-- Маникюр -->
+                <div>
+                    <h3 class="font-playfair text-2xl font-bold mb-4 border-b border-silk-pink/30 pb-2">Маникюр</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <img src="images/portfolio/manicure-1.jpg" alt="Маникюр"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                        <img src="images/portfolio/manicure-2.jpg" alt="Маникюр"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                        <img src="images/portfolio/manicure-3.jpg" alt="Маникюр"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                    </div>
+                </div>
+                <!-- Педикюр -->
+                <div>
+                    <h3 class="font-playfair text-2xl font-bold mb-4 border-b border-silk-pink/30 pb-2">Педикюр</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <img src="images/portfolio/pedicure-1.jpg" alt="Педикюр"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                        <img src="images/portfolio/pedicure-2.jpg" alt="Педикюр"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                        <img src="images/portfolio/pedicure-3.jpg" alt="Педикюр"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                    </div>
+                </div>
+                <!-- Ресницы -->
+                <div>
+                    <h3 class="font-playfair text-2xl font-bold mb-4 border-b border-silk-pink/30 pb-2">Ресницы и Брови
+                    </h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <img src="images/portfolio/lashes-1.jpg" alt="Ресницы"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                        <img src="images/portfolio/lashes-2.jpg" alt="Ресницы"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                        <img src="images/portfolio/lashes-3.jpg" alt="Ресницы"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                    </div>
+                </div>
+                <!-- Волосы -->
+                <div>
+                    <h3 class="font-playfair text-2xl font-bold mb-4 border-b border-silk-pink/30 pb-2">Волосы</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <img src="images/portfolio/hair-1.jpg" alt="Волосы"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                        <img src="images/portfolio/hair-2.jpg" alt="Волосы"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                        <img src="images/portfolio/hair-3.jpg" alt="Волосы"
+                            class="rounded-xl h-32 w-full object-cover hover:scale-105 transition shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/booking.js"></script>
+</body>
+
+</html>

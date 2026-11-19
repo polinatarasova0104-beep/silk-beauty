@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас — Silk Beauty</title>
+    <meta name="description" content="История салона красоты Silk Beauty.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Подключаем красивые иконки Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'silk-pink': '#B8828E',
+                        'silk-dark-pink': '#9D6B77',
+                        'silk-light': '#F5EDE8',
+                        'silk-gold': '#C9A96E',
+                        'silk-dark': '#2D2D2D',
+                        'silk-gray': '#7A7A7A',
+                        'silk-rose': '#F5D8DE',
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-inter text-silk-dark relative overflow-x-hidden">
+    <style>
+        body {
+            background-image: url('images/salon/background.jpg') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
+        }
+    </style>
+    <header
+        class="flex justify-between items-center px-8 md:px-20 py-5 bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <a href="index.html" class="font-playfair text-2xl font-bold text-silk-pink">Silk Beauty</a>
+        <nav class="hidden md:flex gap-8 font-semibold text-sm">
+            <a href="index.html" class="hover:text-silk-pink transition">Главная</a>
+            <a href="services.html" class="hover:text-silk-pink transition">Услуги</a>
+            <a href="masters.html" class="hover:text-silk-pink transition">Мастера</a>
+            <a href="portfolio.html" class="hover:text-silk-pink transition">Портфолио</a>
+            <a href="about.html" class="text-silk-pink transition">О нас</a>
+            <!-- Добавлена ссылка на личный кабинет -->
+            <a href="account.html" class="hover:text-silk-pink transition">Личный кабинет</a>
+        </nav>
+        <button onclick="openBooking()"
+            class="bg-silk-pink text-white px-6 py-3 rounded-full font-semibold hover:bg-silk-dark-pink transition shadow-lg shadow-silk-pink/30">Записаться</button>
+    </header>
+
+    <section class="px-8 md:px-20 py-20 max-w-6xl mx-auto">
+        <div class="bg-silk-rose rounded-[40px] p-10 md:p-16 relative overflow-hidden shadow-xl border border-white/50">
+
+            <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
+                <div>
+                    <h1 class="font-playfair text-5xl md:text-6xl font-bold mb-8 italic">О нас</h1>
+                    <p class="text-lg mb-6 leading-relaxed text-silk-dark/80">Silk Beauty — это салон красоты, в котором
+                        каждая процедура начинается с удобства. Мы создали онлайн-запись, чтобы вы могли бронировать
+                        время 24/7, без звонков и ожидания администратора.</p>
+
+                    <p class="text-lg mb-6 leading-relaxed text-silk-dark/80">В нашем салоне вы найдёте всё для ухода за
+                        собой: маникюр, педикюр, наращивание ресниц, коррекцию и окрашивание бровей, укладку волос.</p>
+
+                    <p class="text-lg font-semibold italic text-silk-dark">Silk Beauty — это про мягкость, как шёлк, и
+                        про заботу, как о себе.</p>
+                </div>
+
+                <!-- Место для фото "О нас" -->
+                <div class="relative">
+
+                    <img src="images/salon/about-photo.jpg" alt="Команда Silk Beauty"
+                        class="w-full h-[400px] object-cover rounded-[30px] shadow-2xl border-4 border-white/50">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl">
+                        <p class="font-playfair font-bold text-silk-pink text-xl">5+ лет</p>
+                        <p class="text-xs text-silk-gray">заботы о красоте</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 relative z-10">
+                <h2 class="font-playfair text-3xl font-bold mb-8 text-center">Почему выбирают Silk Beauty?</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-white/60 p-6 rounded-2xl backdrop-blur-sm flex flex-col items-center">
+                        <i data-lucide="sparkles" class="w-8 h-8 text-silk-pink mb-3"></i>
+                        <span class="font-semibold text-sm">Акции и скидки</span>
+                    </div>
+                    <div class="bg-white/60 p-6 rounded-2xl backdrop-blur-sm flex flex-col items-center">
+                        <i data-lucide="star" class="w-8 h-8 text-silk-pink mb-3"></i>
+                        <span class="font-semibold text-sm">Рейтинги и отзывы</span>
+                    </div>
+                    <div class="bg-white/60 p-6 rounded-2xl backdrop-blur-sm flex flex-col items-center">
+                        <i data-lucide="clock" class="w-8 h-8 text-silk-pink mb-3"></i>
+                        <span class="font-semibold text-sm">Онлайн запись 24/7</span>
+                    </div>
+                    <div class="bg-white/60 p-6 rounded-2xl backdrop-blur-sm flex flex-col items-center">
+                        <i data-lucide="users" class="w-8 h-8 text-silk-pink mb-3"></i>
+                        <span class="font-semibold text-sm">Опытные мастера</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/booking.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

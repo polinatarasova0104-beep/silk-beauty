@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Услуги — Silk Beauty</title>
-    <meta name="description"
-        content="Полный список услуг салона Silk Beauty: маникюр, педикюр, наращивание ресниц, коррекция бровей, укладка волос. Цены и длительность.">
-
+    <meta name="description" content="Выберите категорию услуг в салоне Silk Beauty.">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600&display=swap"
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -20,6 +20,7 @@
                         'silk-pink': '#B8828E',
                         'silk-dark-pink': '#9D6B77',
                         'silk-light': '#F5EDE8',
+                        'silk-gold': '#C9A96E',
                         'silk-dark': '#2D2D2D',
                         'silk-gray': '#7A7A7A',
                     },
@@ -33,47 +34,90 @@
     </script>
 </head>
 
-<body class="font-inter text-silk-dark">
-
-    <header class="flex justify-between items-center px-20 py-5 bg-white shadow-md sticky top-0 z-50">
-        <div class="font-playfair text-2xl font-bold text-silk-pink">Silk Beauty</div>
-        <nav class="flex gap-8">
+<body class="font-inter text-silk-dark relative overflow-x-hidden">
+    <style>
+        body {
+            background-image: url('images/salon/background.jpg') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
+        }
+    </style>
+    <header
+        class="flex justify-between items-center px-8 md:px-20 py-5 bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <a href="index.html" class="font-playfair text-2xl font-bold text-silk-pink">Silk Beauty</a>
+        <nav class="hidden md:flex gap-8 font-semibold text-sm">
             <a href="index.html" class="hover:text-silk-pink transition">Главная</a>
-            <a href="services.html" class="hover:text-silk-pink transition">Услуги</a>
+            <a href="services.html" class="text-silk-pink transition">Услуги</a>
             <a href="masters.html" class="hover:text-silk-pink transition">Мастера</a>
-            <a href="#" class="hover:text-silk-pink transition">Портфолио</a>
-            <a href="#" class="hover:text-silk-pink transition">О нас</a>
+            <a href="portfolio.html" class="hover:text-silk-pink transition">Портфолио</a>
+            <a href="about.html" class="hover:text-silk-pink transition">О нас</a>
+            <!-- Добавлена ссылка на ЛК -->
+            <a href="account.html" class="hover:text-silk-pink transition">Личный кабинет</a>
         </nav>
-        <a href="#"
-            class="bg-silk-pink text-white px-6 py-3 rounded-lg font-semibold hover:bg-silk-dark-pink transition">Записаться</a>
+        <button onclick="openBooking()"
+            class="bg-silk-pink text-white px-6 py-3 rounded-full font-semibold hover:bg-silk-dark-pink transition shadow-lg shadow-silk-pink/30">Записаться</button>
     </header>
 
-    <section class="px-20 py-20">
+    <section class="px-8 md:px-20 py-20">
         <h1 class="font-playfair text-4xl font-bold text-center mb-16">Наши услуги</h1>
 
-        <div class="flex justify-center flex-wrap gap-3 mb-10">
-            <button
-                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition active"
-                data-category="all">Все</button>
-            <button
-                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition"
-                data-category="manicure">Маникюр</button>
-            <button
-                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition"
-                data-category="pedicure">Педикюр</button>
-            <button
-                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition"
-                data-category="lashes">Ресницы</button>
-            <button
-                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition"
-                data-category="brows">Брови</button>
-            <button
-                class="filter-btn px-5 py-2 border border-silk-pink text-silk-pink rounded-full hover:bg-silk-pink hover:text-white transition"
-                data-category="hair">Волосы</button>
-        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Маникюр -->
+            <a href="category.html?cat=manicure"
+                class="bg-white/80 backdrop-blur-sm rounded-[32px] p-10 shadow-xl border border-white hover:-translate-y-2 transition text-center group flex flex-col items-center">
+                <div
+                    class="bg-silk-light p-6 rounded-full mb-6 group-hover:bg-silk-pink group-hover:text-white transition duration-300">
+                    <i data-lucide="hand" class="w-10 h-10 text-silk-pink group-hover:text-white transition"></i>
+                </div>
+                <h2 class="font-playfair text-2xl font-bold mb-2">Маникюр</h2>
+                <p class="text-silk-gray">Уход за ногтями рук</p>
+            </a>
 
-        <div id="services-list" class="grid grid-cols-3 gap-8">
-            <div class="text-center text-silk-gray py-10 col-span-3">Загрузка...</div>
+            <!-- Педикюр -->
+            <a href="category.html?cat=pedicure"
+                class="bg-white/80 backdrop-blur-sm rounded-[32px] p-10 shadow-xl border border-white hover:-translate-y-2 transition text-center group flex flex-col items-center">
+                <div
+                    class="bg-silk-light p-6 rounded-full mb-6 group-hover:bg-silk-pink group-hover:text-white transition duration-300">
+                    <i data-lucide="footprints" class="w-10 h-10 text-silk-pink group-hover:text-white transition"></i>
+                </div>
+                <h2 class="font-playfair text-2xl font-bold mb-2">Педикюр</h2>
+                <p class="text-silk-gray">Уход за стопами</p>
+            </a>
+
+            <!-- Ресницы -->
+            <a href="category.html?cat=lashes"
+                class="bg-white/80 backdrop-blur-sm rounded-[32px] p-10 shadow-xl border border-white hover:-translate-y-2 transition text-center group flex flex-col items-center">
+                <div
+                    class="bg-silk-light p-6 rounded-full mb-6 group-hover:bg-silk-pink group-hover:text-white transition duration-300">
+                    <i data-lucide="eye" class="w-10 h-10 text-silk-pink group-hover:text-white transition"></i>
+                </div>
+                <h2 class="font-playfair text-2xl font-bold mb-2">Ресницы</h2>
+                <p class="text-silk-gray">Наращивание и уход</p>
+            </a>
+
+            <!-- Брови -->
+            <a href="category.html?cat=brows"
+                class="bg-white/80 backdrop-blur-sm rounded-[32px] p-10 shadow-xl border border-white hover:-translate-y-2 transition text-center group flex flex-col items-center">
+                <div
+                    class="bg-silk-light p-6 rounded-full mb-6 group-hover:bg-silk-pink group-hover:text-white transition duration-300">
+                    <i data-lucide="pen-tool" class="w-10 h-10 text-silk-pink group-hover:text-white transition"></i>
+                </div>
+                <h2 class="font-playfair text-2xl font-bold mb-2">Брови</h2>
+                <p class="text-silk-gray">Коррекция и окрашивание</p>
+            </a>
+
+            <!-- Волосы -->
+            <a href="category.html?cat=hair"
+                class="bg-white/80 backdrop-blur-sm rounded-[32px] p-10 shadow-xl border border-white hover:-translate-y-2 transition text-center group flex flex-col items-center">
+                <div
+                    class="bg-silk-light p-6 rounded-full mb-6 group-hover:bg-silk-pink group-hover:text-white transition duration-300">
+                    <i data-lucide="scissors" class="w-10 h-10 text-silk-pink group-hover:text-white transition"></i>
+                </div>
+                <h2 class="font-playfair text-2xl font-bold mb-2">Волосы</h2>
+                <p class="text-silk-gray">Стрижка и укладка</p>
+            </a>
         </div>
     </section>
 
@@ -81,7 +125,9 @@
         <p>© 2026 Silk Beauty</p>
     </footer>
 
-    <script src="js/services.js"></script>
+    <script src="js/booking.js"></script>
+
+    <script>lucide.createIcons();</script>
 </body>
 
 </html>
