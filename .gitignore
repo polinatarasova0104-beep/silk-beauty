@@ -17,6 +17,15 @@ __pycache__/
 
 # VS Code
 .vscode/
+*.code-workspace
+
+# JetBrains IDE
+.idea/
+
+# Node.js (фронтенд)
+node_modules/
+dist/
+build/
 
 # OS
 .DS_Store
