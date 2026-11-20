@@ -180,8 +180,25 @@ docker compose down
 
 ## 8. Сравнение с замерами с занятий 70-71
 
-Ранее, на занятиях 70-71, были сделаны замеры Lighthouse:
-- **До оптимизации (before.png):** SEO = 89, Performance = 89.
-- **После оптимизации (after.png):** SEO = 100, Performance = 98.
+На занятиях 70–71 были сделаны замеры Lighthouse:
+- до оптимизации (`seo/seo_do.png`): SEO = 89, Performance = 89;
+- после оптимизации (`seo/seo_after.png`): SEO = 100, Performance = 98.
 
-На текущем занятии (79-80) замеры показали SEO = 100 на всех публичных страницах, что подтверждает, что оптимизация была выполнена успешно.
+На текущем занятии (79–80) SEO = 100 на всех публичных страницах, что подтверждает успешность оптимизации. Метрики Performance на текущем аудите ниже, потому что теперь проверялись все четыре категории на всех страницах (включая тяжёлые страницы с картинками), а не только SEO на главной.
+
+---
+
+## Приложение: скриншоты
+
+| Файл | Что показывает |
+|------|----------------|
+| `screenshots/01_docker_ps.png` | `docker compose ps` |
+| `screenshots/02_main_page.png` | Главная в инкогнито, замок HTTPS |
+| `screenshots/03_network.png` | Вкладка Network, запрос к API |
+| `screenshots/04_docker_desktop.png` | Контейнеры в Docker Desktop |
+| `screenshots/10_pagespeed_analog.png` | PageSpeed Insights аналога LOFT |
+| `seo/seo_do.png` | SEO до оптимизации (занятия 70–71) |
+| `seo/seo_after.png` | SEO после оптимизации (занятия 70–71) |
+| `seo/pr_checks.png`, `seo/pr_merged.png` | Проверки PR |
+| `seo/robots_txt.png`, `seo/sitemap.xml.png`, `seo/X-Robots-Tag.png` | robots.txt, sitemap.xml, X-Robots-Tag |
+| `docs/audit/reports/main_page_report.html` | Сохранённый HTML-отчёт Lighthouse |
