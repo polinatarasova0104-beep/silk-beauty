@@ -30,6 +30,9 @@ jobs:
         run: |
           cd backend
           python -c "import main"
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
   build:
     needs: test
